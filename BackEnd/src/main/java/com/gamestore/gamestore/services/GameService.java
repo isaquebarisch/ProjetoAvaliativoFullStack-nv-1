@@ -18,26 +18,6 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
-    public List<Game> getAllGamesSorted(Pageable pageable) {
-        return gameRepository.findAll(pageable).getContent();
-    }
-
-    public Page<Game> getAllGamesPaged(Pageable pageable) {
-        return gameRepository.findAll(pageable);
-    }
-
-    public Game saveGame(Game game) {
-        return gameRepository.save(game);
-    }
-
-    public void deleteGame(Long id) {
-        gameRepository.deleteById(id);
-    }
-
-    public Game getGameById(Long id) {
-        return gameRepository.findById(id).orElse(null);
-    }
-
     public List<Game> searchGames(String category, String name, Double minPrice, Double maxPrice,
                                   String platform, String developer, String genre, Double rating,
                                   Integer releaseAfter, Integer releaseBefore, Integer startYear, Integer endYear,

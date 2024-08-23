@@ -18,33 +18,22 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private List<String> images;
-
     private String category;
-
     private String description;
-
     private String platform;
-
     private Double price;
-
     private String ageRating;
-
     private Integer releaseDate;
-
     private String developer;
-
     private String publisher;
-
     private Double rating;
+
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }

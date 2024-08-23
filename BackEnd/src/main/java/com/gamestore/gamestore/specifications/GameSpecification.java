@@ -44,16 +44,6 @@ public class GameSpecification {
                 genre == null ? null : criteriaBuilder.equal(root.get("genre"), genre);
     }
 
-    public static Specification<Game> hasMinPrice(Double minPrice) {
-        return (root, query, criteriaBuilder) ->
-                minPrice == null ? null : criteriaBuilder.greaterThanOrEqualTo(root.get("price"), minPrice);
-    }
-
-    public static Specification<Game> hasMaxPrice(Double maxPrice) {
-        return (root, query, criteriaBuilder) ->
-                maxPrice == null ? null : criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice);
-    }
-
     public static Specification<Game> hasRating(Double rating) {
         return (root, query, criteriaBuilder) ->
                 rating == null ? null : criteriaBuilder.equal(root.get("rating"), rating);
