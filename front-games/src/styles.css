@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: Barrio;
+    src: url(https://fonts.google.com/specimen/Quicksand?query=Quicksand)
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    font-family: jost;
+}
