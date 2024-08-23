@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
+import java.lang.Double;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +21,6 @@ public class Game {
 
     private String name;
 
-    @ElementCollection
     private List<String> images;
 
     private String category;
@@ -30,11 +29,11 @@ public class Game {
 
     private String platform;
 
-    private BigDecimal price;
+    private Double price;
 
     private String ageRating;
 
-    private LocalDate releaseDate;
+    private Integer releaseDate;
 
     private String developer;
 
@@ -90,11 +89,11 @@ public class Game {
         this.platform = platform;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -106,11 +105,11 @@ public class Game {
         this.ageRating = ageRating;
     }
 
-    public LocalDate getReleaseDate() {
+    public Integer getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(Integer releaseDate) {
         this.releaseDate = releaseDate;
     }
 

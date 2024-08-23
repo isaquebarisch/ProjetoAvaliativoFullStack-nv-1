@@ -1,4 +1,5 @@
 package com.gamestore.gamestore.specifications;
+
 import com.gamestore.gamestore.models.Game;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -36,5 +37,49 @@ public class GameSpecification {
     public static Specification<Game> hasDeveloper(String developer) {
         return (root, query, criteriaBuilder) ->
                 developer == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("developer")), "%" + developer.toLowerCase() + "%");
+    }
+
+    public static Specification<Game> hasGenre(String genre) {
+        return (root, query, criteriaBuilder) ->
+                genre == null ? null : criteriaBuilder.equal(root.get("genre"), genre);
+    }
+
+    public static Specification<Game> hasMinPrice(Double minPrice) {
+        return (root, query, criteriaBuilder) ->
+                minPrice == null ? null : criteriaBuilder.greaterThanOrEqualTo(root.get("price"), minPrice);
+    }
+
+    public static Specification<Game> hasMaxPrice(Double maxPrice) {
+        return (root, query, criteriaBuilder) ->
+                maxPrice == null ? null : criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice);
+    }
+
+    public static Specification<Game> hasRating(Double rating) {
+        return (root, query, criteriaBuilder) ->
+                rating == null ? null : criteriaBuilder.equal(root.get("rating"), rating);
+    }
+
+    public static Specification<Game> releasedAfter(Integer releaseAfter) {
+        return (root, query, criteriaBuilder) ->
+                releaseAfter == null ? null : criteriaBuilder.greaterThan(root.get("releaseYear"), releaseAfter);
+    }
+
+    public static Specification<Game> releasedBefore(Integer releaseBefore) {
+        return (root, query, criteriaBuilder) ->
+                releaseBefore == null ? null : criteriaBuilder.lessThan(root.get("releaseYear"), releaseBefore);
+    }
+
+    public static Specification<Game> releasedBetween(Integer startYear, Integer endYear) {
+        return (root, query, criteriaBuilder) -> {
+            if (startYear != null && endYear != null) {
+                return criteriaBuilder.between(root.get("releaseYear"), startYear, endYear);
+            } else if (startYear != null) {
+                return criteriaBuilder.greaterThanOrEqualTo(root.get("releaseYear"), startYear);
+            } else if (endYear != null) {
+                return criteriaBuilder.lessThanOrEqualTo(root.get("releaseYear"), endYear);
+            } else {
+                return null;
+            }
+        };
     }
 }
