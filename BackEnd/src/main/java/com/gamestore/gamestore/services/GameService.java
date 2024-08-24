@@ -43,4 +43,19 @@ public class GameService {
         return pageResult.getContent();
     }
 
+    public Game getById(Long id) {
+        return gameRepository.findById(id).orElse(null);
+    }
+
+    public Game addGame(Game game) {
+        return gameRepository.save(game);
+    }
+
+    public void deleteGame(Long id) {
+        gameRepository.deleteById(id);
+    }
+
+    public Game updateGame(Game game) {
+        return gameRepository.save(game);
+    }
 }

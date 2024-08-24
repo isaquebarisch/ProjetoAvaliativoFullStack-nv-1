@@ -72,4 +72,9 @@ public class GameSpecification {
             }
         };
     }
+
+    public static Specification<Game> hasId(Long id) {
+        return ((root, query, criteriaBuilder) ->
+                id == null ? null : criteriaBuilder.equal(root.get("id"), id));
+    }
 }
