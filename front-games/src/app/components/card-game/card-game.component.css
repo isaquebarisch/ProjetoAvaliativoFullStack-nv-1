@@ -1,3 +1,7 @@
-.category {
-    color: gray;
+.delete {
+    text-align: end;
+}
+
+.infos {
+    padding-bottom: 2%;
 }

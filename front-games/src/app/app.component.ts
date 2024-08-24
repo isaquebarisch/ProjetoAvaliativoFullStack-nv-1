@@ -4,11 +4,12 @@ import { CardGameComponent } from "./components/card-game/card-game.component";
 import { AllGamesComponent } from "./pages/all-games/all-games.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { HomeComponent } from "./pages/home/home.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CardGameComponent, AllGamesComponent, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, CardGameComponent, AllGamesComponent, HeaderComponent, FooterComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
