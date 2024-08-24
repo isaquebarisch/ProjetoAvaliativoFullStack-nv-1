@@ -97,4 +97,9 @@ public class GameController {
             return ResponseEntity.status(HttpStatus.OK).body(gameService.updateGame(game));
         }
     }
+
+    @PostMapping("/populate-bank")
+    public void populateBank(@RequestBody List<Game> game) {
+        game.forEach(e -> gameService.addGame(e));
+    }
 }
