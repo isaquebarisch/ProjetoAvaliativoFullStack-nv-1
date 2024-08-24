@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/games")
@@ -31,12 +32,11 @@ public class GameController {
             @RequestParam(required = false) String developer,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
-            @RequestParam(required = false) String genre,
             @RequestParam(required = false) Double rating,
-            @RequestParam(required = false) Integer releaseAfter,
-            @RequestParam(required = false) Integer releaseBefore,
             @RequestParam(required = false) Integer startYear,
             @RequestParam(required = false) Integer endYear,
+            @RequestParam(required = false) Integer ageRating,
+            @RequestParam(required = false) String publisher,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "asc") String sortDir,
             @RequestParam(defaultValue = "0") int page,
@@ -54,12 +54,11 @@ public class GameController {
         Pageable pageable = PageRequest.of(page, size, sort);
 
         List<Game> games = gameService.searchGames(
-                category, name, minPrice, maxPrice, platform, developer, genre, rating,
-                releaseAfter, releaseBefore, startYear, endYear, sortBy, sortDir, page, size
+                name, minPrice, maxPrice, platform, developer, rating,
+                startYear, endYear, ageRating, publisher, sortBy, sortDir, page, size
         );
 
-
-        return ResponseEntity.status(HttpStatus.OK).body(games);
+        return category == null ? ResponseEntity.status(HttpStatus.OK).body(games) : ResponseEntity.status(HttpStatus.OK).body(games.stream().filter(e -> e.getCategory().contains(category)).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")

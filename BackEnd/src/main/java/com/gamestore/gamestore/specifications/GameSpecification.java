@@ -5,14 +5,20 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class GameSpecification {
 
-    public static Specification<Game> hasCategory(String category) {
-        return (root, query, criteriaBuilder) ->
-                category == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("category")), "%" + category.toLowerCase() + "%");
-    }
-
     public static Specification<Game> nameContains(String name) {
         return (root, query, criteriaBuilder) ->
                 name == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%");
+    }
+
+//    public static Specification<Game> hasCategory(String category) {
+//        return (root, query, criteriaBuilder) ->
+//            category == null ? null :criteriaBuilder.like(criteriaBuilder.lower(root.get("category")), "%"+category.toLowerCase()+"%");
+//
+//    }
+
+    public static Specification<Game> hasPlatform(String platform) {
+        return (root, query, criteriaBuilder) ->
+                platform == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("platform")), "%" + platform.toLowerCase() + "%");
     }
 
     public static Specification<Game> hasPriceRange(Double minPrice, Double maxPrice) {
@@ -29,34 +35,9 @@ public class GameSpecification {
         };
     }
 
-    public static Specification<Game> hasPlatform(String platform) {
-        return (root, query, criteriaBuilder) ->
-                platform == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("platform")), "%" + platform.toLowerCase() + "%");
-    }
-
-    public static Specification<Game> hasDeveloper(String developer) {
-        return (root, query, criteriaBuilder) ->
-                developer == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("developer")), "%" + developer.toLowerCase() + "%");
-    }
-
-    public static Specification<Game> hasGenre(String genre) {
-        return (root, query, criteriaBuilder) ->
-                genre == null ? null : criteriaBuilder.equal(root.get("genre"), genre);
-    }
-
-    public static Specification<Game> hasRating(Double rating) {
-        return (root, query, criteriaBuilder) ->
-                rating == null ? null : criteriaBuilder.equal(root.get("rating"), rating);
-    }
-
-    public static Specification<Game> releasedAfter(Integer releaseAfter) {
-        return (root, query, criteriaBuilder) ->
-                releaseAfter == null ? null : criteriaBuilder.greaterThan(root.get("releaseYear"), releaseAfter);
-    }
-
-    public static Specification<Game> releasedBefore(Integer releaseBefore) {
-        return (root, query, criteriaBuilder) ->
-                releaseBefore == null ? null : criteriaBuilder.lessThan(root.get("releaseYear"), releaseBefore);
+    public static Specification<Game> hasAgeRating(Integer ageRating) {
+        return ((root, query, criteriaBuilder) ->
+                ageRating == null? null : criteriaBuilder.equal(root.get("ageRating"), ageRating));
     }
 
     public static Specification<Game> releasedBetween(Integer startYear, Integer endYear) {
@@ -73,8 +54,20 @@ public class GameSpecification {
         };
     }
 
-    public static Specification<Game> hasId(Long id) {
-        return ((root, query, criteriaBuilder) ->
-                id == null ? null : criteriaBuilder.equal(root.get("id"), id));
+    public static Specification<Game> hasDeveloper(String developer) {
+        return (root, query, criteriaBuilder) ->
+                developer == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("developer")), "%" + developer.toLowerCase() + "%");
     }
+
+    public static Specification<Game> hasPublisher(String publisher) {
+        return (root, query, criteriaBuilder) ->
+                publisher == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("publisher")), "%" + publisher.toLowerCase() + "%");
+    }
+
+    public static Specification<Game> hasRating(Double rating) {
+        return (root, query, criteriaBuilder) ->
+                rating == null ? null : criteriaBuilder.equal(root.get("rating"), rating);
+    }
+
+
 }
