@@ -19,7 +19,7 @@ public class GameService {
     private GameRepository gameRepository;
 
     public List<Game> searchGames(String name, Double minPrice, Double maxPrice,
-                                  String platform, String developer, Double rating,
+                                  String developer, Double rating,
                                   Integer startYear, Integer endYear, Integer ageRating, String publisher,
                                   String sortBy, String sortDir, Integer page, Integer size) {
 
@@ -31,7 +31,7 @@ public class GameService {
 //                .where(GameSpecification.hasCategory(category))
                 .where(GameSpecification.nameContains(name))
                 .and(GameSpecification.hasPriceRange(minPrice, maxPrice))
-                .and(GameSpecification.hasPlatform(platform))
+//                .and(GameSpecification.hasPlatform(platform))
                 .and(GameSpecification.hasDeveloper(developer))
                 .and(GameSpecification.hasRating(rating))
                 .and(GameSpecification.hasAgeRating(ageRating))

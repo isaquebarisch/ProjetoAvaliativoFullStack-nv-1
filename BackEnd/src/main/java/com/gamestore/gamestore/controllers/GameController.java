@@ -54,11 +54,18 @@ public class GameController {
         Pageable pageable = PageRequest.of(page, size, sort);
 
         List<Game> games = gameService.searchGames(
-                name, minPrice, maxPrice, platform, developer, rating,
+                name, minPrice, maxPrice, developer, rating,
                 startYear, endYear, ageRating, publisher, sortBy, sortDir, page, size
         );
 
-        return category == null ? ResponseEntity.status(HttpStatus.OK).body(games) : ResponseEntity.status(HttpStatus.OK).body(games.stream().filter(e -> e.getCategory().contains(category)).collect(Collectors.toList()));
+        if (category != null && platform != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(games.stream().filter(e -> e.getCategory().contains(category) && e.getPlatform().contains(platform)).collect(Collectors.toList()));
+        } else if (category != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(games.stream().filter(e -> e.getCategory().contains(category)).collect(Collectors.toList()));
+        } else if (platform != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(games.stream().filter(e -> e.getPlatform().contains(platform)).collect(Collectors.toList()));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(games);
     }
 
     @GetMapping("/{id}")
