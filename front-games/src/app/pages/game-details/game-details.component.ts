@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../../models/game';
+import { GameService } from '../../services/game.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game-details',
@@ -11,28 +13,26 @@ import { Game } from '../../models/game';
   styleUrl: './game-details.component.css'
 })
 export class GameDetailComponent implements OnInit {
-  game!: Game;
-  private apiUrl = "http://localhost:3000/games/";
+  game?: Game;
+  gameId : string | null = null;
 
-
-  constructor(private http: HttpClient) { }
-
+  constructor(private gameService: GameService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const gameId = 1;
-    this.http.get<Game>(`${this.apiUrl}${gameId}`)
-    .subscribe({
-      next: (data) => {
-        console.log('Data received:', data);
-        this.game = data;
-
-      },
-      error: (error) => {
-        console.error('Error fetching game details', error);
-      }
-    });
+    this.route.paramMap.subscribe(params => {
+      this.gameId = params.get('id')
+    })
+    this.getGame();
   }
 
-
-
+  getGame(): void {
+    this.gameService.getGameById(this.gameId).subscribe(
+      (response) => {
+        this.game = response;
+      },
+      (error) => {
+        console.error('Erro ao carregar os dados: ', error);
+      }
+    );
+  }
 }

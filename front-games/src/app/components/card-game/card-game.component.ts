@@ -1,10 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Game } from '../../models/game';
+import { RouterLink } from '@angular/router';
+import { GameService } from '../../services/game.service';
+import { AllGamesComponent } from '../../pages/all-games/all-games.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, AllGamesComponent, CommonModule],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css'
 })
@@ -12,15 +16,27 @@ export class CardGameComponent {
   @Input() game: Game = {
     id: 0,
     name: '',
-    image: ["https://image.api.playstation.com/vulcan/ap/rnd/202206/0720/0kRqUeSBIbQzz7cen3c989c6.jpg","https://upload.wikimedia.org/wikipedia/pt/b/be/The_Last_of_Us_capa.png","https://super.abril.com.br/wp-content/uploads/2023/03/lastofus-1.jpg?crop=1&resize=1212,909"],
-    category: '',
+    image: [] = [""],
+    category: [],
     description:'',
-    platform: '',
+    platform: [] = [""],
     price: 0,
     ageRating: 0,
     releaseYear: 0,
     developer: '',
     publisher: '',
     rating:  0
+  }
+
+  constructor(private gameService: GameService) {}
+
+  deleteGame(id: number) {
+    if (confirm('Você tem certeza que deseja excluir este jogo?')) {
+      this.gameService.deleteGame(id).subscribe(response => {
+        if (response.status === 'Ok') {
+          console.log("delete ok")
+        }
+      });
+    }
   }
 }

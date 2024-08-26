@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Game } from '../../models/game';
 import { CardGameComponent } from '../../components/card-game/card-game.component';
 import { CommonModule } from '@angular/common';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-all-games',
@@ -11,48 +12,22 @@ import { CommonModule } from '@angular/common';
   styleUrl: './all-games.component.css'
 })
 export class AllGamesComponent {
-  @Input() games : Game[] = [
-    {
-      id: 0,
-    name: 'The Last of Us',
-    image: ["https://image.api.playstation.com/vulcan/ap/rnd/202206/0720/0kRqUeSBIbQzz7cen3c989c6.jpg"],
-    category: 'Survival',
-    description:'',
-    platform: '',
-    price: 0,
-    ageRating: 0,
-    releaseYear: 0,
-    developer: '',
-    publisher: '',
-    rating:  0
-    },
-    {
-      id: 0,
-    name: 'The Last of Us',
-    image: ["https://image.api.playstation.com/vulcan/ap/rnd/202206/0720/0kRqUeSBIbQzz7cen3c989c6.jpg"],
-    category: 'Survival',
-    description:'',
-    platform: '',
-    price: 0,
-    ageRating: 0,
-    releaseYear: 0,
-    developer: '',
-    publisher: '',
-    rating:  0
-    },
-    {
-      id: 0,
-    name: 'The Last of Us',
-    image: ["https://image.api.playstation.com/vulcan/ap/rnd/202206/0720/0kRqUeSBIbQzz7cen3c989c6.jpg"],
-    category: 'Survival',
-    description:'',
-    platform: '',
-    price: 0,
-    ageRating: 0,
-    releaseYear: 0,
-    developer: '',
-    publisher: '',
-    rating:  0
-    }
-  ];
+  games: Game[] = [];
+
+  constructor(private gameService: GameService) {}
+  ngOnInit(): void {
+    this.getGames();
+  }
+
+  getGames(): void {
+    this.gameService.getGame().subscribe(
+      (response) => {
+        this.games = response;
+        console.log(response);
+      },
+      (error) => {
+        console.error('Erro ao carregar os dados: ', error);
+      }
+    );
+  }
 }
