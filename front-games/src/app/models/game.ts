@@ -1,7 +1,7 @@
 export interface Game {
     id: number;
     name: string;
-    image: string[];
+    images: string[];
     category: string[];
     description: string;
     platform: string[];

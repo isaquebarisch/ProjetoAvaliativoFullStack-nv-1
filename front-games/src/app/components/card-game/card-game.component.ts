@@ -1,14 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { Game } from '../../models/game';
-import { RouterLink } from '@angular/router';
-import { GameService } from '../../services/game.service';
-import { AllGamesComponent } from '../../pages/all-games/all-games.component';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Game } from '../../models/game';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-card-game',
   standalone: true,
-  imports: [RouterLink, AllGamesComponent, CommonModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './card-game.component.html',
   styleUrl: './card-game.component.css'
 })
@@ -16,7 +15,7 @@ export class CardGameComponent {
   @Input() game: Game = {
     id: 0,
     name: '',
-    image: [] = [""],
+    images: [] = [""],
     category: [],
     description:'',
     platform: [] = [""],
