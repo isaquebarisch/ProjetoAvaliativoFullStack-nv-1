@@ -15,7 +15,7 @@ public class GameSpecification {
 //            category == null ? null :criteriaBuilder.like(criteriaBuilder.lower(root.get("category")), "%"+category.toLowerCase()+"%");
 //
 //    }
-
+  
 //    public static Specification<Game> hasPlatform(String platform) {
 //        return (root, query, criteriaBuilder) ->
 //                platform == null ? null : criteriaBuilder.like(criteriaBuilder.lower(root.get("platform")), "%" + platform.toLowerCase() + "%");
