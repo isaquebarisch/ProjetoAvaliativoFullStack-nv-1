@@ -1,0 +1,81 @@
+<div class="container mt-5">
+    <h2>Add New Game</h2>
+    <form [formGroup]="gameForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+      
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input id="name" formControlName="name" class="form-control" placeholder="Enter game name" required />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Images:</label>
+        <div formArrayName="images" class="mb-2">
+          <div *ngFor="let image of images.controls; let i = index" class="input-group mb-2">
+            <input [formControlName]="i" class="form-control" placeholder="Image URL" />
+            <button type="button" class="btn btn-danger" (click)="removeImage(i)">Remove</button>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="addImage()">Add Image</button>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Category:</label>
+        <div formArrayName="category" class="mb-2">
+          <div *ngFor="let cat of category.controls; let i = index" class="input-group mb-2">
+            <input [formControlName]="i" class="form-control" placeholder="Category" />
+            <button type="button" class="btn btn-danger" (click)="removeCategory(i)">Remove</button>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="addCategory()">Add Category</button>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Platform:</label>
+        <div formArrayName="platform" class="mb-2">
+          <div *ngFor="let plat of platform.controls; let i = index" class="input-group mb-2">
+            <input [formControlName]="i" class="form-control" placeholder="Platform" />
+            <button type="button" class="btn btn-danger" (click)="removePlatform(i)">Remove</button>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="addPlatform()">Add Platform</button>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea id="description" formControlName="description" class="form-control" rows="3" placeholder="Enter game description"></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label for="price" class="form-label">Price:</label>
+        <input id="price" formControlName="price" type="number" step="0.01" class="form-control" placeholder="Enter price" required />
+      </div>
+  
+      <div class="mb-3">
+        <label for="ageRating" class="form-label">Age Rating:</label>
+        <input id="ageRating" formControlName="ageRating" type="number" class="form-control" placeholder="Enter age rating" required />
+      </div>
+  
+      <div class="mb-3">
+        <label for="releaseYear" class="form-label">Release Year:</label>
+        <input id="releaseYear" formControlName="releaseYear" type="number" class="form-control" placeholder="Enter release year" required />
+      </div>
+  
+      <div class="mb-3">
+        <label for="developer" class="form-label">Developer:</label>
+        <input id="developer" formControlName="developer" class="form-control" placeholder="Enter developer name" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="publisher" class="form-label">Publisher:</label>
+        <input id="publisher" formControlName="publisher" class="form-control" placeholder="Enter publisher name" />
+      </div>
+  
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating:</label>
+        <input id="rating" formControlName="rating" type="number" step="0.1" class="form-control" placeholder="Enter rating" required />
+      </div>
+  
+      <button type="submit" class="btn btn-success">Create Game</button>
+    </form>
+  </div>
+  

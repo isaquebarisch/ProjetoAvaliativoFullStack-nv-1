@@ -1,0 +1,47 @@
+.title {
+  padding: 2%;
+}
+
+.pageable-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+
+button {
+  margin-left: 40px;
+  margin-right: 10px;
+  background-color: #202020;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+select {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #495057;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+
+select:focus {
+  border-color: #007bff;
+  outline: none;
+}

@@ -1,0 +1,13 @@
+@font-face {
+    font-family: Barrio;
+    src: url(https://fonts.google.com/specimen/Quicksand?query=Quicksand)
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    font-family: jost;
+}
