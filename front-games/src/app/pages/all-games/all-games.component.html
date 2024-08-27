@@ -1,4 +1,10 @@
 <h1 class="title">Catalogue</h1>
+<button (click)="getGamesPageable()">set quantity by page</button>
+<select #qnt name="pageable" title="pageable" (change)="onSelected(qnt.value)">
+  <option value="10">10</option>
+  <option value="15">15</option>
+  <option value="20">20</option>
+</select>
   <div class="container">
     <div class="row">
         <app-card-game *ngFor="let game of games" [game]="game" class="col-4"></app-card-game>

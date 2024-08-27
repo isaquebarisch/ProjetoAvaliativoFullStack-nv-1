@@ -8,9 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class GameService {
   private url = 'http://localhost:8080/games';
-  
+
   constructor(private http:HttpClient) { }
-  
+
+  getGamesPageable(qnt: number): Observable<Game[]> {
+    return this.http.get<Game[]>(`${this.url}?size=${qnt}`)
+  }
+
   getGame():Observable<Game[]>{
     return this.http.get<Game[]>(this.url);
   }

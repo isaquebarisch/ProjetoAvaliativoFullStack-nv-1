@@ -13,10 +13,20 @@ import { GameService } from '../../services/game.service';
 })
 export class AllGamesComponent {
   games: Game[] = [];
+  qnt: number = 10;
 
   constructor(private gameService: GameService) {}
   ngOnInit(): void {
     this.getGames();
+  }
+
+  onSelected(value: string) {
+    this.qnt = parseInt(value);
+    console.log(this.qnt)
+  }
+
+  getGamesPageable() {
+    this.gameService.getGamesPageable(this.qnt).subscribe((res) => this.games = res)
   }
 
   getGames(): void {
